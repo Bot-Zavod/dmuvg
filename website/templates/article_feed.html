@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}	
+
+
+	<!-- CONTENT -->
+	  <div class="content">
+		  <!--Add a post button for the admin-->
+		  <a type="button" class="btn btn-secondary btn-lg btn-block mt-3" href="edit/"><i class="fas fa-plus"></i> Новый пост</a>
+
+		  </div> 
+
+
+	  <!--List of posts-->
+	    <div class="col mt-3">
+	      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+	        <div class="col p-4 d-flex flex-column position-static">
+	          <strong class="d-inline-block mb-2 text-primary">Section name</strong>
+	          <h3 class="mb-0">Name of the post</h3>
+	          <div class="mb-1 text-muted">Date</div>
+			  <p class="card-text mb-auto">The content of the post. The content of the post. The content of the post. The content of the post.</p>
+			  <a class="stretched-link" href="/article/">Переглянути пост</a>
+
+			</div>
+			<!--picture-->
+	        <div class="col-auto d-none d-lg-block">
+			  <!--<svg class="bd-placeholder-img" width="400" height="270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Picture here</text></svg>-->
+			  <img class="bd-placeholder-img" width="400" height="250" src="{% static 'website/img/image.png' %}">  <!-- width="auto" height="auto" style="max-width: 300px;"-->
+			</div>
+			
+		  </div>
+		  
+		</div>
+		
+	    <div class="col">
+	      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-270 position-relative">
+	        <div class="col p-4 d-flex flex-column position-static">
+	          <strong class="d-inline-block mb-2 text-primary">World</strong>
+	          <h3 class="mb-0">Clean blog</h3>
+	          <div class="mb-1 text-muted">04.06.2020</div>
+	          <p class="card-text mb-auto">Lorum Ipsum... Never in all their history have men been able truly to conceive of the world...</p>
+			  <a class="stretched-link" href="/article/">Переглянути пост</a>
+			  
+			</div>
+			<!--picture-->
+	        <div class="col-auto d-none d-lg-block">
+				<img class="bd-placeholder-img" width="400" height="250" src="{% static 'website/img/image.png' %}">
+			</div>
+			
+		  </div>
+		  
+		</div>
+		
+	    <div class="col">
+			<div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-270 position-relative">
+			  <div class="col p-4 d-flex flex-column position-static">
+				<strong class="d-inline-block mb-2 text-primary">World</strong>
+				<h3 class="mb-0">Featured post</h3>
+				<div class="mb-1 text-muted">Nov 12</div>
+				<p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+				<a class="stretched-link" href="/article/">Continue reading</a>
+				
+			  </div>
+			  <!--picture-->
+			  <div class="col-auto d-none d-lg-block">
+				  <img class="bd-placeholder-img" width="400" height="250" src="{% static 'website/img/image.png' %}">
+			  </div>
+			  
+			</div>
+			
+		  </div>
+	  </div>
+
+	</div>
+	<!--End of list of posts-->
+	
+{% endblock %}
