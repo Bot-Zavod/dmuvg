@@ -18,10 +18,9 @@ from django.urls import path, re_path
 from website import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.article_feed, name="main_page"),
-    path('edit/', views.article_edit, name="edit_page"),
-    path('article/', views.article, name="article"),
-    path('new_article', views.article_edit, name="main_page"),
-
+    path("admin/", admin.site.urls),
+    path("", views.article_feed, name="main_page"),
+    path("article/", views.article, name="article"),
+    path("edit/", views.article_edit, name="edit_page"),
+    path("new_article", views.article_edit, name="main_page"),
 ]
