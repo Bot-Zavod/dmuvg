@@ -8,5 +8,5 @@ class Article(models.Model):
     fixed_to_top = models.BooleanField(default=False)
     image = models.ImageField(height_field=None, width_field=None, max_length=None)
 
-    __str__(self):
+    def __str__(self):
         return f"{header}: {text[0:20]}"
