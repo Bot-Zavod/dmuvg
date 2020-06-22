@@ -22,17 +22,14 @@
 
             <!-- TODO: в жанговские линки -->
             <a class="dropdown-item" href="#">Назва1</a>
-            <a class="dropdown-item" href="#">Назва2</a>
-            <a class="dropdown-item" href="#">Назва3</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Додати новий розділ</a>
         </div>
     </div>
 
 
-    <!-- TODO: в жанговские линки -->
-    <button class="btn btn-success"><a href="/" style="color: white;"><i class="fas fa-save"></i> Зберегти</a></button>
-    <button class="btn btn-danger"><a href="/" style="color: white;"><i class="fas fa-times"></i> Скасувати</a></button>
+    <button id="save" class="btn btn-success"><a class="btn-text"><i class="fas fa-save"></i> Зберегти</a></button>
+    <button  id="cancel" class="btn btn-danger"><a class="btn-text"><i class="fas fa-times"></i> Скасувати</a></button>
 </div>
 
 <!--Buttons for the admin-->
@@ -43,11 +40,8 @@
 <div id="summernote"></div>
 <!-- TODO: в отдельный файл -->
 <script>
-    $('#summernote').summernote({
-        placeholder: 'Hello Bootstrap 4',
-        tabsize: 2,
-        height: 500
-    });
+    var HTMLstring = '<div><p>Hello, world</p><p>Summernote can insert HTML string</p></div>';
+    $('#summernote').summernote('pasteHTML', HTMLstring);
 </script>
 
 

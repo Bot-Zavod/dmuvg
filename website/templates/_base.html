@@ -11,6 +11,8 @@
     <!-- Bootstrap core CSS -->
     <link href="{% static 'website/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'website/css/blog.css' %}" rel="stylesheet">
+    <link href="{% static 'website/js/main.js' %}">
+
 
     <!-- Fonts awersome -->
     <link href="{% static 'website/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
@@ -30,24 +32,6 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
-    <!-- Вынести в цсс! -->
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-    </style>
-    <!-- /Вынести в цсс! -->
 
     <!-- Custom styles for this template -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
@@ -60,7 +44,7 @@
     <div class="container">
 
         <!-- HEADEEER -->
-        <header class="blog-header py-3">
+        <header class="blog-header py-3" style="background: #000000 url(/static/website/img/photo_2020-06-23_00-21-13.jpg); background-size: cover; height: 16rem; background-align: top; filter: blur(8px);">
             <!-- HEADER -->
             <a class="text-center text-white" href="/" style="text-decoration: none;">
                 <img class="mt-3" src="{% static 'website/img/crest.svg' %}"

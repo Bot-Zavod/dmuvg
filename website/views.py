@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 
 
 def index(request):
-    return render(request, "index.html")
+    return render(request, "article.html")
 
 
 def article_edit(request):
