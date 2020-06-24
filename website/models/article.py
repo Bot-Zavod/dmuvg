@@ -9,4 +9,4 @@ class Article(models.Model):
     image = models.ImageField(height_field=None, width_field=None, max_length=None)
 
     def __str__(self):
-        return f"{header}: {text[0:20]}"
+        return f"{self.header}: {self.text[0:20]}"

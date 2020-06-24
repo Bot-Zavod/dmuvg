@@ -4,8 +4,8 @@
     width: 100%;
     padding-top: 20px;
     position: relative;
-    /* background: -o-radial-gradient(50% 57.28%, 50% 45.09%, #004983 0%, #1a4065 100%);
-    background: radial-gradient(50% 45.09% at 50% 57.28%, #004983 0%, #1a4065 100%); */
+    background: -o-radial-gradient(50% 57.28%, 50% 45.09%, #004983 0%, #1a4065 100%);
+    background: radial-gradient(50% 45.09% at 50% 57.28%, #004983 0%, #1a4065 100%);
     font-family: "ProbaPro", sans-serif;
     display: -webkit-box;
     display: -webkit-flex;
@@ -338,3 +338,10 @@ button.btn.sort::before {
 .to-right {
     float: right;
 }
+
+.note-editor {
+    margin-bottom: 50px;
+}
+
+
+/* */

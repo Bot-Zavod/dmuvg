@@ -1,12 +1,5 @@
 from django.shortcuts import render, redirect
-
-
-def index(request):
-    return render(request, "article.html")
-
-
-def article_edit(request):
-    return render(request, "article_edit.html")
+from website.models import Article
 
 
 def article_feed(request):
@@ -14,4 +7,12 @@ def article_feed(request):
 
 
 def article(request):
-    return render(request, "article.html")
+    article = Article.objects.get(pk=2)
+    context = {'article': article}
+    return render(request, "article.html", context)
+
+
+def article_edit(request):
+    article = Article.objects.get(pk=1)
+    context = {'article': article}
+    return render(request, "article_edit.html", context)
