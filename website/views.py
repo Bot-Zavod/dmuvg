@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from website.models import Article
+
+from .models import Article
 
 
 def article_feed(request):
