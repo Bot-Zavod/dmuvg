@@ -40,11 +40,10 @@
         -webkit-flex-direction: column;
         -ms-flex-direction: column;
         /* flex-direction      : column; */
-        
         -webkit-box-align: center;
         -webkit-align-items: center;
         -ms-flex-align: center;
-        align-items: center; 
+        align-items: center;
     }
 }
 
@@ -55,11 +54,16 @@
     text-align: center;
     color: #fff;
     font-weight: 300;
+    text-decoration: none;
 }
 
 .blog-header {
     line-height: 1;
     border-bottom: 1px solid #e5e5e5;
+    background-image: url(/static/website/img/211686.jpg);
+    background-position: center;
+    height: auto;
+    background-size: cover;
 }
 
 .blog-header-logo {
@@ -232,17 +236,16 @@ button.btn.sort::before {
     background-attachment: scroll;
     position: relative;
     background-size: cover;
-    background-image: url('/static/website/img/image.png')
+    background-image: url('/static/website/static/website/img/photo_2020-06-23_00-21-13.jpg')
 }
 
-.masthead .overlay {
-    border-radius: 10px;
+.overlay {
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
-    background-color: #212529;
+    background-color: #2d343b;
     opacity: 0.75;
 }
 
@@ -373,5 +376,47 @@ button.btn.sort::before {
     color: #fff;
 }
 
+
 /* */
 
+@media all and (min-width: 1200px) {
+    .navbar .nav-item .dropdown-menu {
+        display: block;
+        opacity: 0;
+        visibility: hidden;
+        transition: .3s;
+        margin-top: 6px;
+    }
+    .navbar .nav-item:hover .nav-link {
+        color: #fff;
+    }
+    .navbar .dropdown-menu.fade-down {
+        top: 80%;
+        transform: rotateX(-75deg);
+        transform-origin: 0% 0%;
+    }
+    .navbar .dropdown-menu.fade-up {
+        top: 180%;
+    }
+    .navbar .nav-item:hover .dropdown-menu {
+        transition: .3s;
+        opacity: 1;
+        visibility: visible;
+        top: 100%;
+        transform: rotateX(0deg);
+    }
+}
+
+.navbar .nav-item .dropdown-item {
+    padding: 6px;
+}
+
+.navbar .nav-item .dropdown-item:hover {
+    background: #004983;
+    color: #fff;
+}
+
+#after-overlay {
+    position: relative;
+    text-decoration: none;
+}
