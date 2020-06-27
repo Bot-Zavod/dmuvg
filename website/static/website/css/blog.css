@@ -54,7 +54,6 @@
     text-align: center;
     color: #fff;
     font-weight: 300;
-    text-decoration: none;
 }
 
 .blog-header {
@@ -70,10 +69,6 @@
     font-family: "ProbaPro", sans-serif;
     font-size: 2.25rem;
     color: #f5f7fa;
-}
-
-.blog-header-logo:hover {
-    text-decoration: none;
 }
 
 a.header_title {
@@ -236,7 +231,7 @@ button.btn.sort::before {
     background-attachment: scroll;
     position: relative;
     background-size: cover;
-    background-image: url('/static/website/static/website/img/photo_2020-06-23_00-21-13.jpg')
+    background-image: url('/static/website/static/website/img/211686.jpg')
 }
 
 .overlay {
@@ -419,4 +414,18 @@ button.btn.sort::before {
 #after-overlay {
     position: relative;
     text-decoration: none;
+}
+
+@media (min-width:992px) {
+    .jumbotron {
+        padding: 2rem 14rem;
+        margin-bottom: 2rem;
+        background-color: #e9ecef;
+        border-radius: 0.3rem;
+    }
+}
+
+hr.new5 {
+    border: 8px solid gray;
+    border-radius: 5px;
 }

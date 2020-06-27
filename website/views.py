@@ -36,6 +36,7 @@ def article_feed(request):
 
 
 def article(request):
+    print(dict(request))
     article = Article.objects.filter(category__category_name='Робота басейнових рад')
     context = {'article': article[0]}
     return render(request, "article.html", context)
