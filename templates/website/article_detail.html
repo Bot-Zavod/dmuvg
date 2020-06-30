@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<!--<div class="jumbotron text-center">
+    <h1 id="mainTitle">{{object.header}}</h1>
+  </div>-->
+
+
+<div class="col space-bottom mt-4">
+    <div type="date" class="text-muted to-right-font-20px">{{object.date}}</div>
+    <div class="text-muted to-left-font-24px">World</div>
+</div>
+
+
+<!--Buttons for the admin-->
+<div class="row d-flex justify-content-center mb-5">
+    <div class="btn-group">
+        <button class="btn edit btn-info">
+            <a id="edit" 
+                class="stretched-link btn-text"
+                href="{% url 'edit_page' %}">
+
+                <i class="fas fa-edit"></i>Редагувати
+            </a>
+        </button>
+        <button class="btn cancel btn-danger ml-2">
+            <a id="delete"
+                class="stretched-link btn-text"
+                href="#">
+                
+                <i class="fas fa-trash-alt"></i> Видалити
+            </a>
+        </button>
+    </div>
+</div>
+
+
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 mx-auto article-text">
+                <h1 class="mb-5 text-center">{{object.header}}</h1>
+
+                <hr class="new5 mb-5">
+
+                {{object.text}}
+
+            </div>
+        </div>
+    </div>
+</article>
+
+{% endblock content %}

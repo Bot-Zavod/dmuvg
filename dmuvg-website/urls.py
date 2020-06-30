@@ -1,4 +1,4 @@
-"""GOV URL Configuration
+"""dmuvg-website URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.1/topics/http/urls/
@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 from website import views
+from website.views import ArticleDetailView
+
 
 
 # Главная {Главная}
@@ -49,7 +51,11 @@ from website import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.article_feed, name="main_page"),
-    path("article/", views.article, name="article"),
+
+    path("article/<slug:slug>", ArticleDetailView.as_view(), name="article"),
+
+    path("about/<slug:slug>/", views.article, name="about"),
+
     path("edit/", views.article_edit, name="edit_page"),
     path("new_article", views.article_edit, name="main_page"),
 ]

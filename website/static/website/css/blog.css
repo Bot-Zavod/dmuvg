@@ -47,7 +47,7 @@
     }
 }
 
-.blog-header #mainTitle {
+< .blog-header #mainTitle {
     margin: 0 auto;
     font-size: 2rem;
     line-height: 2.5rem;
@@ -426,6 +426,10 @@ button.btn.sort::before {
 }
 
 hr.new5 {
-    border: 8px solid gray;
+    border: 4px solid gray;
     border-radius: 5px;
+}
+
+.article-text {
+    font-size: 1.4rem
 }

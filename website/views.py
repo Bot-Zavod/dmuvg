@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
+from django.views.generic.detail import DetailView
 
-from .models import Article, Category
+from website.models import Article, Category
 
 
 # Главная {Главная}
@@ -31,13 +32,16 @@ from .models import Article, Category
 # Запобігання корупції. {статья}
 
 
+class ArticleDetailView(DetailView):
+    model = Article
+
+
 def article_feed(request):
-    return render(request, "article_feed.html")
+    return render(request, "website/article_list.html")
 
 
 def article(request):
-    print(dict(request))
-    article = Article.objects.filter(category__category_name='Робота басейнових рад')
+    article = Article.objects.filter(category__category_name=request.path_info)
     context = {'article': article[0]}
     return render(request, "article.html", context)
 
