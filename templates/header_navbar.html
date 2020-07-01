@@ -27,30 +27,30 @@
                 <ul class="navbar-nav mr-auto">
 
                     <li class="nav-item">
-                        <a class="navbar-brand" href="{% url 'novini-ta-anonsi' %}">Новини та анонси</a>
-                    </li>
-
-                    {% comment %} <li class="nav-item">
-                        <a class="navbar-brand" href="{% url 'about' "робота-басейнових-рад" %}">Робота басейнових рад</a>
+                        <a class="navbar-brand" href="{% url 'news' %}">Новини та анонси</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="navbar-brand" href="{% url 'about' "запобігання-корупції" %}">Запобігання корупції</a>
-                    </li> {% endcomment %}
+                        <a class="navbar-brand" href="{% url 'article' 'robota-baseinovikh-rad' %}">Робота басейнових рад</a>
+                    </li>
 
-                    {% comment %} <li class="nav-item dropdown">
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="{% url 'article' 'zapobigannia-koruptsiyi' %}">Запобігання корупції</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
                         <a class="navbar-brand dropdown-toggle"
                             id="dropdown06"
                             data-toggle="dropdown"
                             aria-haspopup="true"
                             aria-expanded="false">Інформація</a>
                         <div class="dropdown-menu fade-up" aria-labelledby="dropdown06">
-                        <a class="dropdown-item" href="{% url 'article' %}">Водогосподарська обстановка</a>
-                        <a class="dropdown-item" href="{% url 'article' %}">Водні ресурси басейну річки</a>
-                        <a class="dropdown-item" href="{% url 'article' %}">Робота зі зверненнями громадян</a>
-                        <a class="dropdown-item" href="{% url 'article' %}">Еколого-просвітницькi заходи</a>
-                        <a class="dropdown-item" href="{% url 'article' %}">Плани управління річковими басейнами</a>
-                        <a class="dropdown-item" href="{% url 'article' %}">Оренда водних об'єктів</a>
+                        <a class="dropdown-item" href="{% url 'feed' 'vodogospodarska-obstanovka' %}">Водогосподарська обстановка</a>
+                        <a class="dropdown-item" href="{% url 'article' 'vodni-resursi-baseinu-richki' %}">Водні ресурси басейну річки</a>
+                        <a class="dropdown-item" href="{% url 'article' 'robotu-zi-zvernenniami-gromadian' %}">Робота зі зверненнями громадян</a>
+                        <a class="dropdown-item" href="{% url 'feed' 'provedennia-ekologo-prosvitnitskikh-zakhodiv' %}">Еколого-просвітницькi заходи</a>
+                        <a class="dropdown-item" href="{% url 'feed' 'planirovanie-upravlenii-baseinami' %}">Плани управління річковими басейнами</a>
+                        <a class="dropdown-item" href="{% url 'article' 'informatsiia-pro-orendu-vodnikh-ob-iektiv' %}">Оренда водних об'єктів</a>
                         </div>
                     </li>
 
@@ -61,16 +61,16 @@
                             aria-haspopup="true"
                             aria-expanded="false">Про нас</a>
                         <div class="dropdown-menu fade-up" aria-labelledby="dropdown06">
-                            <a class="dropdown-item mt" href="{% url 'about' "polozhennya-organizaciyi" %}">Положення організації</a>
-                            <a class="dropdown-item" href="{% url 'article' %}">Iнформація про керівництво</a>
-                            <a class="dropdown-item" href="{% url 'article' %}">Графік прийому громадян</a>
-                            <a class="dropdown-item" href="{% url 'article' %}">Структура організації</a>
-                            <a class="dropdown-item" href="{% url 'article' %}">Основні структурні підрозділи</a>
-                            <a class="dropdown-item" href="{% url 'article' %}">Контакти</a>
-                            <a class="dropdown-item" href="{% url 'article' %}">Підвідомчі організації</a>
-                            <a class="dropdown-item" href="{% url 'article' %}">Корисні посилання</a>
+                            <a class="dropdown-item mt" href="{% url 'about' 'polozhennia-organizatsiyi' %}">Положення організації</a>
+                            <a class="dropdown-item" href="{% url 'about' 'informatsiia-o-kerivnitstvo' %}">Iнформація про керівництво</a>
+                            <a class="dropdown-item" href="{% url 'about' 'grafik-priiomu-gromadian' %}">Графік прийому громадян</a>
+                            <a class="dropdown-item" href="{% url 'about' 'struktura-organizatsiyi' %}">Структура організації</a>
+                            <a class="dropdown-item" href="{% url 'about' 'osnovni-strukturni-pidrozdili' %}">Основні структурні підрозділи</a>
+                            <a class="dropdown-item" href="{% url 'about' 'kontakti' %}">Контакти</a>
+                            <a class="dropdown-item" href="{% url 'about' 'pidvidomchi-organizatsiyi' %}">Підвідомчі організації</a>
+                            <a class="dropdown-item" href="{% url 'about' 'korisni-posilannia' %}">Корисні посилання</a>
                         </div>
-                    </li> {% endcomment %}
+                    </li>
 
                 </ul>
                 <!--<form class="form-inline my-2 my-md-0">

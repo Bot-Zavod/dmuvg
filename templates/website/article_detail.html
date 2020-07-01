@@ -25,6 +25,8 @@
                 <i class="fas fa-edit"></i>Редагувати
             </a>
         </button>
+
+    {% if  object.fixed_to_top == False %}
         <button class="btn cancel btn-danger ml-2">
             <a id="delete"
                 class="stretched-link btn-text"
@@ -33,6 +35,8 @@
                 <i class="fas fa-trash-alt"></i> Видалити
             </a>
         </button>
+    {% endif %}
+
     </div>
 </div>
 {% endif %}
@@ -44,9 +48,23 @@
             <div class="col-md-10 mx-auto article-text">
                 <h1 class="mb-5 text-center">{{object.header}}</h1>
 
-                <hr class="new5 mb-5">
+                {% if object.text == None or object.text == "" %}
+        
+                    <div class="container mt-5">
+                        <div class="col-md-12 text-center">
+                            <span class="display-1 d-block">Ой! :(</span>
+                            <div class="mb-4 lead">Ця сторінка ще не заповнена</div>
+                            <a href="/" class="btn btn-link">Повернутися на головну</a>
+                        </div>
+                    </div>
 
-                {{object.text}}
+                {% else %}
+                
+                    <hr class="new5 mb-5">
+
+                    {{object.text}}
+
+                {% endif %}
 
             </div>
         </div>

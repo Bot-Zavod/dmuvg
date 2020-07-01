@@ -16,44 +16,27 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path, include
 from website import views
-from website.views import ArticleDetailView, ArticleListView
-
-
-# Главная {Главная}
-
-# Про нас {дропДАУН}
-    # положення організації; {статья}
-    # інформація про керівництво; {статья}
-    # графік прийому громадян; {статья}
-    # структура організації; {статья}
-    # основні структурні підрозділи; {статья}
-    # контакти; {статья}
-    # підвідомчі організації; {статья}
-    # корисні посилання. {статья}
-
-# Новини та анонси. {Раздел - лента}
-
-# Інформація {дропДАУН}
-    # Водогосподарська обстановка. {Раздел - лента}
-    # Водні ресурси басейну річки. {статья}
-    # Роботу зі зверненнями громадян. {статья}
-    # Проведення еколого-просвітницьких заходів. {Раздел - лента}
-    # Плани управління річковими басейнами. {Раздел - лента}
-    # Інформація про оренду водних об'єктів. {статья}
-
-# Робота басейнових рад. {статья}
-
-# Запобігання корупції. {статья}
+from website.views import (
+    ArticleDetailView,
+    Article_Main_List_View
+)
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", ArticleListView.as_view(), category=None, name="main_page"),
-    path("about/<slug:slug>", ArticleDetailView.as_view(), name="about"),
-    path("info/<slug:slug>", ArticleDetailView.as_view(), name="about"),
+    path("", Article_Main_List_View.as_view(), name="main_page"),
+    path("news/", Article_Main_List_View.as_view(), name="news"),
     
+    
+    path("about/<slug:slug>", ArticleDetailView.as_view(), name="about"),
     path("article/<slug:slug>", ArticleDetailView.as_view(), name="article"),
+    path("feed/<slug:slug>", views.article_list_view, name="feed"),
+    path("feed/<slug:categ>/<slug:slug>", ArticleDetailView.as_view(), name="feed-article"),
+
+
     path("edit/", views.article_edit, name="edit_page"),
     path("new_article/", views.article_edit, name="new_page"),
     path("not_found/", views.not_found, name="error_page"),
+
+    path('summernote/', include('django_summernote.urls')),
 ]

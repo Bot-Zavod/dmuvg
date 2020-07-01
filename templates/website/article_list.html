@@ -7,7 +7,7 @@
 {% if  request.user.is_authenticated == True %}
 <div class="content">
     <!--Add a post button for the admin-->
-    <a type="button" class="btn btn-secondary btn-lg btn-block mt-3" href="edit/">
+    <a type="button" class="btn btn-secondary btn-lg btn-block mt-3" href="{% url 'edit_page' %}">
         <i class="fas fa-plus"></i>
         Новый пост
     </a>
@@ -42,7 +42,7 @@
 
         <div class="container mt-5">
             <div class="col-md-12 text-center">
-                <span class="display-1 d-block">Помилка</span>
+                <span class="display-1 d-block">От діла!</span>
                 <div class="mb-4 lead">В цьому роздiлi ще немає статей</div>
                 <a href="/" class="btn btn-link">Повернутися на головну</a>
             </div>

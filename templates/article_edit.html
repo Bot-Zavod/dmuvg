@@ -3,7 +3,24 @@
 {% block content %}
 
 {% if  request.user.is_authenticated == True %}
-<!-- The name of the post input-->
+
+<form method="post" novalidate>
+  {% csrf_token %}
+  <ul>
+    <p>{{ form.header.label_tag }}</p>
+    <p>{{ form.header }}</p>
+
+    <p>{{ form.text.label_tag }}</p>
+    <p>{{ form.text }}</p>
+
+    <p>{{ form.category.label_tag }}</p>
+    <p>{{ form.category }}</p>
+
+  </ul>
+  <button type="submit">Submit</button>
+</form>
+
+{% comment %} <!-- The name of the post input-->
 <div class="input-group input-group-lg mt-5 container">
     <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroup-sizing-lg">Назва посту</span>
@@ -34,8 +51,6 @@
     </div>
 </div>
 
-<!--Buttons for the admin-->
-
 
 <div class="container">
 <div class="summernote" id="summernote"></div>
@@ -58,19 +73,19 @@
     var HTMLstring = "{{article.text}}";
     $('#summernote').summernote('pasteHTML', HTMLstring)
 </script>
-</div>
+</div> {% endcomment %}
 
 {% else %}
+
 <div class="container mt-5">
     <div class="col-md-12 text-center">
-        <span class="display-1 d-block">Sorry</span>
-        <div class="mb-4 lead mt-3">Вибачайте, але Ви не адмiн!</div>
+        <span class="display-1 d-block">Прохід заборонено!</span>
+        <div class="mb-4 lead mt-3">Вибачте, але Ви не Ілон Маск!</div>
         <a href="/" class="btn btn-link">Повернутися на головну</a>
     </div>
 </div>
 
 {% endif %}
-
 
 
 {% endblock %}
