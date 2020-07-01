@@ -14,9 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, re_path
+from django.urls import path, re_path, include
 from website import views
-from website.views import ArticleDetailView
+from website.views import (
+            ArticleDetailView,
+            ArticleListView
+)
 
 
 
@@ -32,6 +35,15 @@ from website.views import ArticleDetailView
     # підвідомчі організації; {статья}
     # корисні посилання. {статья}
 
+# about
+#     position of the organization
+#     management information
+#     reception schedule
+#     structure of the organization
+#     main structural units
+#     contacts
+#     subordinate organizations
+#     useful links
 
 # Новини та анонси. {Раздел - лента}
 
@@ -50,12 +62,11 @@ from website.views import ArticleDetailView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", views.article_feed, name="main_page"),
 
+    path("", ArticleListView.as_view(), name="main_page"),
+    path("about/<slug:slug>", ArticleDetailView.as_view(), name="about"),
     path("article/<slug:slug>", ArticleDetailView.as_view(), name="article"),
 
-    path("about/<slug:slug>/", views.article, name="about"),
-
     path("edit/", views.article_edit, name="edit_page"),
-    path("new_article", views.article_edit, name="main_page"),
+    path("new_article/", views.article_edit, name="new_page"),
 ]

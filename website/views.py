@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
 
 from website.models import Article, Category
 
@@ -15,6 +16,16 @@ from website.models import Article, Category
     # контакти; {статья}
     # підвідомчі організації; {статья}
     # корисні посилання. {статья}
+
+# about
+#     position of the organization
+#     management information
+#     reception schedule
+#     structure of the organization
+#     main structural units
+#     contacts
+#     subordinate organizations
+#     useful links
 
 
 # Новини та анонси. {Раздел - лента}
@@ -36,14 +47,8 @@ class ArticleDetailView(DetailView):
     model = Article
 
 
-def article_feed(request):
-    return render(request, "website/article_list.html")
-
-
-def article(request):
-    article = Article.objects.filter(category__category_name=request.path_info)
-    context = {'article': article[0]}
-    return render(request, "article.html", context)
+class ArticleListView(ListView):
+    model = Article
 
 
 def article_edit(request):

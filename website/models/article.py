@@ -1,6 +1,9 @@
 from django.db import models
-from django.utils.text import slugify
 from django.urls import reverse
+
+# third part slugify library works better than django's one
+# https://github.com/un33k/python-slugify
+from slugify import slugify
 
 
 class Category(models.Model):
@@ -21,10 +24,9 @@ class Article(models.Model):
 
     def get_absolute_url(self):
         kwargs = {
-            'pk': self.id,
             'slug': self.slug
         }
-        return reverse('article-pk-slug-detail', kwargs=kwargs)
+        return reverse('article', kwargs=kwargs)
 
     def save(self, *args, **kwargs):
         value = self.header

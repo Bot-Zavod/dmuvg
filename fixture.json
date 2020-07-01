@@ -1,0 +1,42 @@
+[
+{
+  "model": "website.category",
+  "pk": 1,
+  "fields": {
+    "category_name": "/about/polozhennya-organizaciyi/"
+  }
+},
+{
+  "model": "website.category",
+  "pk": 2,
+  "fields": {
+    "category_name": "/article/"
+  }
+},
+{
+  "model": "website.article",
+  "pk": 1,
+  "fields": {
+    "header": "What's new?",
+    "text": "FUCK YOU BITCHEZZZZZz",
+    "date": "2020-06-24",
+    "fixed_to_top": false,
+    "image": "",
+    "category": 1,
+    "slug": "1"
+  }
+},
+{
+  "model": "website.article",
+  "pk": 2,
+  "fields": {
+    "header": "Text",
+    "text": "super text",
+    "date": "2020-06-30",
+    "fixed_to_top": false,
+    "image": "",
+    "category": 1,
+    "slug": "2"
+  }
+}
+]
