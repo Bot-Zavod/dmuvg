@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 
-
+{% if  request.user.is_authenticated == True %}
 <!-- The name of the post input-->
 <div class="input-group input-group-lg mt-5 container">
     <div class="input-group-prepend">
@@ -24,10 +24,7 @@
         </button>
 
         <div class="dropdown-menu">
-            <!-- TODO: в жанговские линки -->
-            <a class="dropdown-item" href="#">Назва1</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Додати новий розділ</a>
+            <a class="dropdown-item" href="#">{{article.category}}</a>
         </div>
     </div>
 
@@ -62,5 +59,18 @@
     $('#summernote').summernote('pasteHTML', HTMLstring)
 </script>
 </div>
+
+{% else %}
+<div class="container mt-5">
+    <div class="col-md-12 text-center">
+        <span class="display-1 d-block">Sorry</span>
+        <div class="mb-4 lead mt-3">Вибачайте, але Ви не адмiн!</div>
+        <a href="/" class="btn btn-link">Повернутися на головну</a>
+    </div>
+</div>
+
+{% endif %}
+
+
 
 {% endblock %}

@@ -69,4 +69,6 @@ urlpatterns = [
 
     path("edit/", views.article_edit, name="edit_page"),
     path("new_article/", views.article_edit, name="new_page"),
+    
+    path("not_found/", views.not_found, name="error_page"),
 ]
