@@ -55,3 +55,7 @@ def article_edit(request):
     article = Article.objects.get(pk=1)
     context = {'article': article}
     return render(request, "article_edit.html", context)
+
+
+def not_found(request):
+    return render(request, "page_not_found.html")
