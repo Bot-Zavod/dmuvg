@@ -16,11 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path, include
 from website import views
-from website.views import (
-            ArticleDetailView,
-            ArticleListView
-)
-
+from website.views import ArticleDetailView, ArticleListView
 
 
 # Главная {Главная}
@@ -34,16 +30,6 @@ from website.views import (
     # контакти; {статья}
     # підвідомчі організації; {статья}
     # корисні посилання. {статья}
-
-# about
-#     position of the organization
-#     management information
-#     reception schedule
-#     structure of the organization
-#     main structural units
-#     contacts
-#     subordinate organizations
-#     useful links
 
 # Новини та анонси. {Раздел - лента}
 
@@ -62,13 +48,12 @@ from website.views import (
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-
-    path("", ArticleListView.as_view(), name="main_page"),
+    path("", ArticleListView.as_view(), category=None, name="main_page"),
     path("about/<slug:slug>", ArticleDetailView.as_view(), name="about"),
+    path("info/<slug:slug>", ArticleDetailView.as_view(), name="about"),
+    
     path("article/<slug:slug>", ArticleDetailView.as_view(), name="article"),
-
     path("edit/", views.article_edit, name="edit_page"),
     path("new_article/", views.article_edit, name="new_page"),
-    
     path("not_found/", views.not_found, name="error_page"),
 ]

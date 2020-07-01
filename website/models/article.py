@@ -6,11 +6,11 @@ from django.urls import reverse
 from slugify import slugify
 
 
-class Category(models.Model):
-    category_name = models.CharField(max_length=100)
+# class Category(models.Model):
+#     category_name = models.CharField(max_length=100)
 
-    def __str__(self):
-        return self.category_name
+#     def __str__(self):
+#         return self.category_name
 
 
 class Article(models.Model):
@@ -18,20 +18,17 @@ class Article(models.Model):
     text = models.TextField()
     date = models.DateField(auto_now=False, auto_now_add=True)
     fixed_to_top = models.BooleanField(default=False)
-    image = models.ImageField(height_field=None, width_field=None, max_length=None)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.CharField(max_length=100, blank=True, null=True)
     slug = models.SlugField(unique=True)
 
     def get_absolute_url(self):
-        kwargs = {
-            'slug': self.slug
-        }
-        return reverse('article', kwargs=kwargs)
+        kwargs = {"slug": self.slug}
+        return reverse("article", kwargs=kwargs)
 
     def save(self, *args, **kwargs):
         value = self.header
-        self.slug = slugify(value, allow_unicode=True)
+        self.slug = slugify(value)
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.header}: {self.text[0:20]}"
+        return f"{self.header}: {self.text[:20]}"

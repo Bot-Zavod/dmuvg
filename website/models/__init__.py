@@ -1,2 +1,2 @@
 # public models
-from .article import Article, Category
+from .article import Article
