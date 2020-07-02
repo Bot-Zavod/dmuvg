@@ -9,8 +9,8 @@ from slugify import slugify
 
 class Article(models.Model):
     header = models.CharField(max_length=100)
-    text = models.TextField()
-    date = models.DateField(auto_now=False, auto_now_add=True)
+    text = models.TextField(max_length=100000)
+    date = models.DateTimeField(auto_now=False, auto_now_add=True)
     fixed_to_top = models.BooleanField(default=False)
 
     FEED_SECTIONS = [
@@ -24,11 +24,9 @@ class Article(models.Model):
     )
     slug = models.SlugField(unique=True)
 
-
     def get_absolute_url(self):
         kwargs = {"slug": self.slug}
         return reverse("article", kwargs=kwargs)
-
 
     def get_category(self):
         category = self.category
@@ -38,7 +36,6 @@ class Article(models.Model):
             return tuple(ans[0])[1]
         else:
             return ""
-
 
     def save(self, *args, **kwargs):
         value = self.header
@@ -54,7 +51,6 @@ class Article(models.Model):
     @property
     def short_description(self):
         return truncatechars(self.text, 75)
-
 
     def __str__(self):
         return f"{self.header}: {self.text[:20]}"

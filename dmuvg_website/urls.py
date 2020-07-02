@@ -1,4 +1,4 @@
-"""dmuvg-website URL Configuration
+"""dmuvg_website URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.1/topics/http/urls/
@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path, include
+
+from dmuvg_website import settings
 from website import views
 from website.views import (
     ArticleDetailView,
@@ -34,14 +36,18 @@ urlpatterns = [
     path("feed/<slug:categ>/<slug:slug>", ArticleDetailView.as_view(), name="feed-article"),
 
 
-    path("edit/", views.article_edit, name="edit_page"),
-    path("create/", views.article_edit, name="new_page"),
+    path("edit/<slug:slug>", views.edit_article_view, name="edit_page"),
+    path("create/", views.create_article_view, name="new_page"),
 
     path("not_found/", views.not_found, name="error_page"),
 
     path('summernote/', include('django_summernote.urls')),
 ]
 
+if settings.DEBUG:
+    from django.conf.urls.static import static
+    urlpatterns += static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT )
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 # Главная {Главная}
 

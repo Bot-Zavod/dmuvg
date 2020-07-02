@@ -4,8 +4,10 @@
 
 {% if  request.user.is_authenticated == True %}
 
-    <form method="post" novalidate>{% csrf_token %}
+    <form method="post">{% csrf_token %}
         <!-- The name of the post input-->
+        {% comment %} {{ form.as_p }} {% endcomment %}
+
         <div class="input-group mt-3">
             <div class="input-group-prepend">
                 <span class="input-group-text">
