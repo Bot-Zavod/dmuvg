@@ -129,11 +129,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
 # Summernote configuration
-
+SUMMERNOTE_THEME = 'bs3'
 SUMMERNOTE_CONFIG = {
     # Using SummernoteWidget - iframe mode, default
-    'iframe': False,
-
+    'iframe': True,
+    
     # Or, you can set it to `False` to use SummernoteInplaceWidget by default - no iframe mode
     # In this case, you have to load Bootstrap/jQuery sources and dependencies manually.
     # Use this when you're already using Bootstrap/jQuery based themes.
@@ -143,9 +143,11 @@ SUMMERNOTE_CONFIG = {
         # As an example, using Summernote Air-mode
         'airMode': False,
 
+        'disableResizeEditor': False,
+
         # Change editor size
-        'width': '1000px',
-        'height': '480',
+        'width': '100%',
+        'height': '500px',
 
         
         # Toolbar customization

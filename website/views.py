@@ -29,7 +29,8 @@ def article_edit(request):
         if form.is_valid():
             form_data = form.cleaned_data
             print(form_data)
-            Article.objects.create(**form_data)
+            a = Article.objects.create(**form_data)
+            return redirect(a.get_absolute_url())
     else:
         form = CreateArticleForm()
     return render(request, 'article_edit.html', {'form': form})
