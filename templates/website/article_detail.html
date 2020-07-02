@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<!--<div class="jumbotron text-center">
+    <h1 id="mainTitle">{{object.header}}</h1>
+  </div>-->
+
+
+<div class="col space-bottom mt-4">
+    <div type="date" class="text-muted to-right-font-20px">{{object.date}}</div>
+    <div class="text-muted to-left-font-24px">World</div>
+</div>
+
+{% if  request.user.is_authenticated == True %}
+<!--Buttons for the admin-->
+<div class="row d-flex justify-content-center mb-5">
+    <div class="btn-group">
+        <button class="btn edit btn-info">
+            <a id="edit" 
+                class="stretched-link btn-text"
+                href="{% url 'edit_page' object.slug %}">
+
+                <i class="fas fa-edit"></i>Редагувати
+            </a>
+        </button>
+
+    {% if  object.fixed_to_top == False %}
+        <button class="btn cancel btn-danger ml-2">
+            <a id="delete"
+                class="stretched-link btn-text"
+                href="#">
+                
+                <i class="fas fa-trash-alt"></i> Видалити
+            </a>
+        </button>
+    {% endif %}
+
+    </div>
+</div>
+{% endif %}
+
+
+<article>
+
+    {% if object.text == None or object.text == "" %}
+
+        <div class=" article-text">
+            <h1 class="mb-5 text-center">{{object.header}}</h1>
+
+            <div class="container mt-5">
+                <div class="col-md-12 text-center">
+                    <span class="display-1 d-block">Ой! :(</span>
+                    <div class="mb-4 lead">Ця сторінка ще не заповнена</div>
+                    <a href="/" class="btn btn-link">Повернутися на головну</a>
+                </div>
+            </div>
+        </div>
+
+    {% else %}
+
+        <div class="container">
+                <div class=" article-text">
+                    <h1 class="mb-5 text-center">{{object.header}}</h1>
+        
+                    <hr class="new5 mb-5">
+
+                    <div class="row">
+                        <div class="col-md-9 blog-main">
+
+                            {{ object.text | safe }}
+
+                        </div>
+
+                        <aside class="col-md-3 blog-sidebar">
+                            <div class="p-3 mb-3 bg-light rounded">
+                                <h4 class="font-italic">Останні новини</h4>
+                                <ol class="list-unstyled mb-0">
+                                {% for article in articles %}
+                                    {% if article.header != object.header %}
+                                        <li>
+                                            <div type="date" class="text-muted mt-4 mb-1 small-date">{{article.date}}</div>
+                                            <a class="p-2 dark-blue" href="{% url 'article' article.slug %}">{{article.header}}</a>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                                </ol>
+                            </div>
+                
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% endif %}
+
+</article>
+
+{% endblock content %}

@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% if  request.user.is_authenticated == True %}
+
+    <form method="post">{% csrf_token %}
+        <!-- The name of the post input-->
+        {% comment %} {{ form.as_p }} {% endcomment %}
+
+        <div class="input-group mt-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                        Назва посту
+                </span>
+            </div>
+            {{ form.header }}
+        </div>
+
+         <div class="input-group mt-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text"
+                        for="CategorySelect">
+                        Назва розділу
+                </span>
+            </div>
+            {{ form.category }}
+        </div>
+
+        <hr>
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    {{ form.text }}
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- The name of the sction-->
+        <div class="mt-3 mb-5 container">
+
+                <button id="save" class="btn btn-success" type="submit">
+                    <a class="btn-text">
+                        <i class="fas fa-save"></i>
+                        Зберегти
+                    </a>
+                </button>
+
+                <button  id="cancel" class="btn btn-danger">
+                    <a class="btn-text" href="/">
+                        <i class="fas fa-times"></i>
+                        Скасувати
+                    </a>
+                </button>
+
+        </div>
+
+    </form>
+
+{% else %}
+
+    <!-- EMPTY EROOR --> 
+    <div class="container mt-5">
+        <div class="col-md-12 text-center">
+            <span class="display-1 d-block">Прохід заборонено!</span>
+            <div class="mb-4 lead mt-3">Вибачте, але Ви не Ілон Маск!</div>
+            <a href="/" class="btn btn-link">Повернутися на головну</a>
+        </div>
+    </div>
+
+{% endif %}
+
+
+{% endblock %}

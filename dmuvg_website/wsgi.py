@@ -1,5 +1,5 @@
 """
-WSGI config for GOV project.
+WSGI config for dmuvg_website project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'GOV.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'dmuvg_website.settings')
 
 application = get_wsgi_application()
