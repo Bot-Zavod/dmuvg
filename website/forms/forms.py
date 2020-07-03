@@ -45,11 +45,6 @@ class CreateArticleForm(forms.Form):
 
 
 class EditArticleForm(forms.ModelForm):
-    # почему ModelForm, a нe Form?
-    # хз, по туториалу, я пробывал менять, тоже не работало
-    header = forms.CharField(max_length=200)
-    text = forms.CharField()
-
     class Meta:
         model = Article
         fields = ("header", "text")
@@ -60,7 +55,6 @@ class EditArticleForm(forms.ModelForm):
                                 'type': 'text',
                                 'aria-label': 'Large',
                                 'aria-describedby': 'inputGroup-sizing-sm',
-                                # 'value':"FUCK"
                                 }
                         ),
             'text': SummernoteWidget(),

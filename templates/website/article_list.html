@@ -3,6 +3,11 @@
 {% block content %}
 
 
+{% if title %}
+    <h2 class="text-center">{{title}}</h2>
+{% endif %}
+
+
 <!-- CONTENT -->
 {% if  request.user.is_authenticated == True %}
     <div class="content">
@@ -18,7 +23,7 @@
 
 <!--List of posts-->
 <div class="col mt-3">
-    {% for article in object_list reversed %}
+    {% for article in object_list %}
 
         <div class="row
                     no-gutters

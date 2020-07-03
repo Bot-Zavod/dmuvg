@@ -10,7 +10,7 @@ from slugify import slugify
 class Article(models.Model):
     header = models.CharField(max_length=100)
     text = models.TextField(max_length=100000)
-    date = models.DateTimeField(auto_now=False, auto_now_add=True)
+    date = models.DateTimeField(auto_now=True)
     fixed_to_top = models.BooleanField(default=False)
 
     FEED_SECTIONS = [
@@ -24,6 +24,11 @@ class Article(models.Model):
     )
     slug = models.SlugField(unique=True)
 
+    class Meta:
+        # sort by "the date" in descending order unless
+        # overridden in the query with order_by()
+        ordering = ['-date']
+
     def get_absolute_url(self):
         kwargs = {"slug": self.slug}
         return reverse("article", kwargs=kwargs)
@@ -31,19 +36,19 @@ class Article(models.Model):
     def get_category(self):
         category = self.category
         sections = self.FEED_SECTIONS
-        ans = list(filter(lambda x: x[0] == category, sections))+[""]
-        if ans[0]:
-            return tuple(ans[0])[1]
-        else:
-            return ""
+        sections = dict(sections)
+        sections[""] = ""
+        return sections[category]
 
     def save(self, *args, **kwargs):
         value = self.header
         origin_slug = unique_slug = slugify(value)
-        numb = 0
-        while Article.objects.filter(slug=unique_slug).exists():
-            unique_slug = f'{origin_slug}-{numb}'
-            numb += 1
+        # generetes unique slug in case that's not a fixed article
+        if not self.fixed_to_top:
+            numb = 0
+            while Article.objects.filter(slug=unique_slug).exists():
+                unique_slug = f'{origin_slug}-{numb}'
+                numb += 1
         self.slug = unique_slug
         super().save(*args, **kwargs)
 
