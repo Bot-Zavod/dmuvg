@@ -19,7 +19,6 @@ from django.urls import path, re_path, include
 from dmuvg_website import settings
 from website import views
 from website.views import (
-    ArticleDetailView,
     Article_Main_List_View
 )
 
@@ -30,10 +29,10 @@ urlpatterns = [
     path("news/", Article_Main_List_View.as_view(), name="news"),
     
     
-    path("about/<slug:slug>/", ArticleDetailView.as_view(), name="about"),
-    path("article/<slug:slug>/", ArticleDetailView.as_view(), name="article"),
+    path("about/<slug:slug>/", views.detail_article_view, name="about"),
+    path("article/<slug:slug>/", views.detail_article_view, name="article"),
     path("feed/<slug:slug>/", views.article_list_view, name="feed"),
-    path("feed/<slug:categ>/<slug:slug>/", ArticleDetailView.as_view(), name="feed-article"),
+    path("feed/<slug:categ>/<slug:slug>/", views.detail_article_view, name="feed-article"),
 
 
     path("edit/<slug:slug>/", views.edit_article_view, name="edit_page"),
