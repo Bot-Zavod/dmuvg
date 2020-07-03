@@ -460,3 +460,9 @@ hr.new5 {
         max-width: 100%;
     }
 }
+
+@media (max-width: 991px) {
+    .blog-sidebar {
+        margin-top: 1.5rem;
+    }
+}

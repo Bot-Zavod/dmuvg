@@ -8,3 +8,7 @@
 // object.onload = function() {
 //     $('#summernote').summernote('pasteHTML', HTMLstring);
 // };
+
+$('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus')
+  })

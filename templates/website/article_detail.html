@@ -22,12 +22,12 @@
                 class="stretched-link btn-text"
                 href="{% url 'edit_page' object.slug %}">
 
-                <i class="fas fa-edit"></i>Редагувати
+                <i class="fas fa-edit"></i> Редагувати
             </a>
         </button>
 
     {% if  object.fixed_to_top == False %}
-        <button class="btn cancel btn-danger ml-2">
+        <button class="btn cancel btn-danger ml-2" data-toggle="modal" data-target="#exampleModal">
             <a id="delete"
                 class="stretched-link btn-text"
                 href="#">
@@ -35,9 +35,31 @@
                 <i class="fas fa-trash-alt"></i> Видалити
             </a>
         </button>
+    </div>  
+    
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ви впевнені?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                Підтвердіть видалення статті "{{object.header}}"
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times"></i> Скасувати</button>
+                <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Продовжити</button>
+                </div>
+            </div>
+            </div>
+        </div>
     {% endif %}
 
-    </div>
+    
 </div>
 {% endif %}
 
