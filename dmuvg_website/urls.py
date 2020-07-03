@@ -30,13 +30,13 @@ urlpatterns = [
     path("news/", Article_Main_List_View.as_view(), name="news"),
     
     
-    path("about/<slug:slug>", ArticleDetailView.as_view(), name="about"),
-    path("article/<slug:slug>", ArticleDetailView.as_view(), name="article"),
-    path("feed/<slug:slug>", views.article_list_view, name="feed"),
-    path("feed/<slug:categ>/<slug:slug>", ArticleDetailView.as_view(), name="feed-article"),
+    path("about/<slug:slug>/", ArticleDetailView.as_view(), name="about"),
+    path("article/<slug:slug>/", ArticleDetailView.as_view(), name="article"),
+    path("feed/<slug:slug>/", views.article_list_view, name="feed"),
+    path("feed/<slug:categ>/<slug:slug>/", ArticleDetailView.as_view(), name="feed-article"),
 
 
-    path("edit/<slug:slug>", views.edit_article_view, name="edit_page"),
+    path("edit/<slug:slug>/", views.edit_article_view, name="edit_page"),
     path("create/", views.create_article_view, name="new_page"),
 
     path("not_found/", views.not_found, name="error_page"),
@@ -46,8 +46,12 @@ urlpatterns = [
 
 if settings.DEBUG:
     from django.conf.urls.static import static
-    urlpatterns += static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT )
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(
+        settings.MEDIA_URL,
+        document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(
+        settings.STATIC_URL,
+        document_root=settings.STATIC_ROOT)
 
 # Главная {Главная}
 

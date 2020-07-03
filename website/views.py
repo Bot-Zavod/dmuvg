@@ -21,13 +21,27 @@ class ArticleDetailView(DetailView):
 
 
 def article_list_view(request, slug, categ=None):
+    FEED_SECTIONS = {
+        "vodogospodarska-obstanovka": "WS",
+        "ekologo-prosvitnitski-zakhodi": "EV",
+        "planirovanie-upravlenii-baseinami": "MR",
+    }
+    slug = FEED_SECTIONS[slug]
     queryset = Article.objects.filter(category=slug)
-    context = {"objects_list": queryset}
+
+    titile = {
+        'WS': 'Водогосподарська обстановка',
+        'EV': 'Еколого-просвітницькі заходи',
+        'MR': 'Управління річковими басейнами'
+    }
+    context = {
+        "object_list": queryset,
+        "title": titile[slug],
+    }
     return render(request, "website/article_list.html", context)
 
 
 class Article_Main_List_View(ListView):
-    model = Article
     queryset = Article.objects.filter(fixed_to_top=False)
 
 
@@ -37,7 +51,6 @@ def create_article_view(request):
         form = CreateArticleForm(request.POST)
         if form.is_valid():
             form_data = form.cleaned_data
-            print(form_data)
             a = Article.objects.create(**form_data)
             return redirect(a.get_absolute_url())
     else:
@@ -46,34 +59,12 @@ def create_article_view(request):
 
 
 def edit_article_view(request, slug):
-    model = Article
     article = Article.objects.get(slug=slug)
-    # что такое slug? - генериует уникальную ссылку-название типо vodogospodarska-obstanovka
-    # заработало?
-    # no
-
-    if request.method == "POST":
-        print(str(request.POST))
-        # form = EditArticleForm(
-        #         data=request.POST or None,
-        #         instance=article,
-        #         # initial={
-        #         #     'header': article.header,
-        #         #     'text': article.text
-        #         # },
-        #     )
-
-        form = EditArticleForm(data=request.POST)
-        form.initial['header'] = article.header
-        form.initial['text'] = article.text
-
-        if form.is_valid():
-            form.save()
-    else:
-        form = EditArticleForm()
-
-    context = {'form': form}
-    return render(request, 'article_edit.html', context)
+    form = EditArticleForm(data=request.POST or None, instance=article)
+    if form.is_valid():
+        form.save()
+        return redirect(article.get_absolute_url())
+    return render(request, 'article_edit.html', context={'form': form})
 
 
 def not_found(request):
