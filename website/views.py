@@ -5,19 +5,22 @@ from django.shortcuts import get_object_or_404
 from django.template import RequestContext
 
 from website.models import Article
-from .forms import CreateArticleForm, EditArticleForm
+from .forms import ArticleForm
 
 
-class ArticleDetailView(DetailView):
+def detail_article_view(request, slug):
+    article = Article.objects.get(slug=slug)
+    queryset = Article.objects.filter(fixed_to_top=False)
+    if request.method == 'POST' and request.user.is_authenticated:
+        if not article.fixed_to_top:
+            article.delete()
+            return redirect("/")
 
-    def get(self, request, slug):
-        article = Article.objects.get(slug=slug)
-        queryset = Article.objects.filter(fixed_to_top=False)
-        context = {
-            'object': article,
-            'articles': queryset
-        }
-        return render(request, 'website/article_detail.html', context)
+    context = {
+        'object': article,
+        'articles': queryset,
+    }
+    return render(request, 'website/article_detail.html', context)
 
 
 def article_list_view(request, slug, categ=None):
@@ -48,25 +51,29 @@ class Article_Main_List_View(ListView):
 def create_article_view(request):
 
     if request.method == 'POST':
-        form = CreateArticleForm(request.POST)
+        form = ArticleForm(request.POST)
         if form.is_valid():
             form_data = form.cleaned_data
             a = Article.objects.create(**form_data)
             return redirect(a.get_absolute_url())
     else:
-        form = CreateArticleForm()
+        form = ArticleForm()
     return render(request, 'article_edit.html', {'form': form})
 
 
 def edit_article_view(request, slug):
     article = Article.objects.get(slug=slug)
-    form = EditArticleForm(data=request.POST or None, instance=article)
+    form = ArticleForm(request.POST or None, instance=article)
     if form.is_valid():
         form.save()
         return redirect(article.get_absolute_url())
-    return render(request, 'article_edit.html', context={'form': form})
+    context = {
+        'form': form,
+        'edit': True,
+        'category': article.get_category(),
+    }
+    return render(request, 'article_edit.html', context=context)
 
 
 def not_found(request):
     return render(request, "page_not_found.html")
-

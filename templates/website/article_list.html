@@ -2,67 +2,77 @@
 {% load static %}
 {% block content %}
 
+<div class="container">
+    <div class="row">
+        <div class="col text-center mb-3 mt-4">
+            {% if title %}
+                <h2>{{title}}</h2>
+            {% else %}
+                <h2>Новости</h2>
+            {% endif %}
+        </div>
 
-{% if title %}
-    <h2 class="text-center">{{title}}</h2>
-{% endif %}
+        <!-- CONTENT -->
+        {% if  request.user.is_authenticated == True %}
+            <!--Add a post button for the admin-->
+            <div class="col mt-4">
+                <div class="content">
+                    <a type="button" class="btn btn-secondary btn-lg btn-block" href="{% url 'new_page' %}">
+                        <i class="fas fa-plus"></i>
+                        Новый пост
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
 
 
-<!-- CONTENT -->
-{% if  request.user.is_authenticated == True %}
-    <div class="content">
-        <!--Add a post button for the admin-->
-        <a type="button" class="btn btn-secondary btn-lg btn-block mt-3" href="{% url 'new_page' %}">
-            <i class="fas fa-plus"></i>
-            Новый пост
-        </a>
+
+    <!--List of posts-->
+    <div class="col mt-3">
+        {% for article in object_list %}
+
+            <div class="row
+                        no-gutters
+                        border
+                        rounded
+                        overflow-hidden
+                        flex-md-row mb-4
+                        shadow-sm 
+                        h-md-250
+                        position-relative">
+                
+                <div class="col-lg-3 col-md-2 col-sm-12 p-3 flex-column position-static">
+                    <div class="text-muted"> {{ article.date }} </div>
+                </div>
+
+                <div class="col p-3 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary"> {{ article.get_category }} </strong>
+                    <h3 class="mb-1"> {{ article.header }} </h3>
+                    <p class="card-text mb-auto">
+                    
+                        {{ article.text | striptags | truncatechars:100 | safe }}
+
+                    </p>
+                    <a class="stretched-link" href="{{ article.get_absolute_url }}">Детальніше →</a>
+                </div>
+            </div>
+
+        {% empty %}
+
+            <div class="container mt-5">
+                <div class="col-md-12 text-center">
+                    <span class="display-1 d-block">От діла!</span>
+                    <div class="mb-4 lead">В цьому роздiлi ще немає статей</div>
+                    <a href="/" class="btn btn-link">Повернутися на головну</a>
+                </div>
+            </div>
+
+        {% endfor %}
 
     </div>
-{% endif %}
-
-
-<!--List of posts-->
-<div class="col mt-3">
-    {% for article in object_list %}
-
-        <div class="row
-                    no-gutters
-                    border
-                    rounded
-                    overflow-hidden
-                    flex-md-row mb-4
-                    shadow-sm h-md-250
-                    position-relative">
-            
-            <div class="col-2 p-4 flex-column position-static">
-                <div class="mb-1 text-muted"> {{ article.date }} </div>
-            </div>
-
-            <div class="col p-4 d-flex flex-column position-static">
-                <strong class="d-inline-block mb-2 text-primary"> {{ article.get_category }} </strong>
-                <h3 class="mb-0"> {{ article.header }} </h3>
-                <p class="card-text mb-auto">
-                
-                    {{ article.text | striptags | truncatechars:300 | safe}}
-
-                </p>
-                <a class="stretched-link" href="{{ article.get_absolute_url }}">Детальніше →</a>
-            </div>
-        </div>
-
-    {% empty %}
-
-        <div class="container mt-5">
-            <div class="col-md-12 text-center">
-                <span class="display-1 d-block">От діла!</span>
-                <div class="mb-4 lead">В цьому роздiлi ще немає статей</div>
-                <a href="/" class="btn btn-link">Повернутися на головну</a>
-            </div>
-        </div>
-
-    {% endfor %}
+    <!--End of list of posts-->
 
 </div>
-<!--End of list of posts-->
 
 {% endblock %}

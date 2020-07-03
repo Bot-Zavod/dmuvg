@@ -1,1 +1,1 @@
-from .forms import *
+from .article import ArticleForm

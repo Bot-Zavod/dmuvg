@@ -10,7 +10,7 @@ from slugify import slugify
 class Article(models.Model):
     header = models.CharField(max_length=100)
     text = models.TextField(max_length=100000)
-    date = models.DateTimeField(auto_now=True)
+    date = models.DateTimeField(auto_now=False, auto_now_add=True)
     fixed_to_top = models.BooleanField(default=False)
 
     FEED_SECTIONS = [
@@ -37,8 +37,10 @@ class Article(models.Model):
         category = self.category
         sections = self.FEED_SECTIONS
         sections = dict(sections)
-        sections[""] = ""
-        return sections[category]
+        if category is None:
+            return ""
+        else:
+            return sections[category]
 
     def save(self, *args, **kwargs):
         value = self.header

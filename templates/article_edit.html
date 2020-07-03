@@ -3,7 +3,7 @@
 {% block content %}
 
 {% if  request.user.is_authenticated == True %}
-
+<div class="container">
     <form method="post">{% csrf_token %}
         <!-- The name of the post input-->
         {% comment %} {{ form.as_p }} {% endcomment %}
@@ -16,15 +16,24 @@
             </div>
             {{ form.header }}
         </div>
-
-         <div class="input-group mt-3">
+        
+        
+        <div class="input-group mt-3">
             <div class="input-group-prepend">
                 <span class="input-group-text"
                         for="CategorySelect">
                         Назва розділу
                 </span>
             </div>
-            {{ form.category }}
+            {% if  edit == True %}
+                {% if category == '' %}
+                    <input type="text" value="Головна" class="form-control" readonly>
+                {% elif category %}
+                     <input type="text" value="{{ category }}" class="form-control" readonly>
+                {% endif %}
+            {% else %}
+                {{ form.category }}
+            {% endif %}
         </div>
 
         <hr>
@@ -60,6 +69,7 @@
         </div>
 
     </form>
+</div>
 
 {% else %}
 
