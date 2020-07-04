@@ -26,7 +26,6 @@ class ArticleForm(forms.ModelForm):
 
             'category': forms.Select(
                             attrs={
-                                'default': 'WS',
                                 'choices': FEED_SECTIONS,
                                 'class': "custom-select",
                                 'for': "CategorySelect",

@@ -15,65 +15,58 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path, include
+from django.conf.urls.static import static
 
 from dmuvg_website import settings
 from website import views
-from website.views import (
-    Article_Main_List_View
-)
+from website.views import Article_Main_List_View
+
+
+# will work on a production stage
+handler404 = 'website.views.handler404'
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", Article_Main_List_View.as_view(), name="main_page"),
     path("news/", Article_Main_List_View.as_view(), name="news"),
-    
-    
     path("about/<slug:slug>/", views.detail_article_view, name="about"),
     path("article/<slug:slug>/", views.detail_article_view, name="article"),
     path("feed/<slug:slug>/", views.article_list_view, name="feed"),
-    path("feed/<slug:categ>/<slug:slug>/", views.detail_article_view, name="feed-article"),
-
-
+    path(
+        "feed/<slug:categ>/<slug:slug>/", views.detail_article_view, name="feed-article"
+    ),
     path("edit/<slug:slug>/", views.edit_article_view, name="edit_page"),
-    path("create/", views.create_article_view, name="new_page"),
-
-    path("not_found/", views.not_found, name="error_page"),
-
-    path('summernote/', include('django_summernote.urls')),
+    path("create/<slug:slug>/", views.create_article_view, name="new_page"),
+    path("summernote/", include("django_summernote.urls")),
 ]
 
 if settings.DEBUG:
-    from django.conf.urls.static import static
-    urlpatterns += static(
-        settings.MEDIA_URL,
-        document_root=settings.MEDIA_ROOT)
-    urlpatterns += static(
-        settings.STATIC_URL,
-        document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 # Главная {Главная}
 
 # Про нас {дропДАУН}
-    # положення організації; {статья}
-    # інформація про керівництво; {статья}
-    # графік прийому громадян; {статья}
-    # структура організації; {статья}
-    # основні структурні підрозділи; {статья}
-    # контакти; {статья}
-    # підвідомчі організації; {статья}
-    # корисні посилання. {статья}
+# положення організації; {статья}
+# інформація про керівництво; {статья}
+# графік прийому громадян; {статья}
+# структура організації; {статья}
+# основні структурні підрозділи; {статья}
+# контакти; {статья}
+# підвідомчі організації; {статья}
+# корисні посилання. {статья}
 
 
 # Новини та анонси. {Раздел - лента}
 
 # Інформація {дропДАУН}
-    # Водогосподарська обстановка. {Раздел - лента}
-    # Водні ресурси басейну річки. {статья}
-    # Роботу зі зверненнями громадян. {статья}
-    # Еколого-просвітницькі заходи. {Раздел - лента}
-    # Плани управління річковими басейнами. {Раздел - лента}
-    # Інформація про оренду водних об'єктів. {статья}
+# Водогосподарська обстановка. {Раздел - лента}
+# Водні ресурси басейну річки. {статья}
+# Роботу зі зверненнями громадян. {статья}
+# Еколого-просвітницькі заходи. {Раздел - лента}
+# Плани управління річковими басейнами. {Раздел - лента}
+# Інформація про оренду водних об'єктів. {статья}
 
 
 # Робота басейнових рад. {статья}

@@ -81,7 +81,7 @@
     </div>
     <div class="row">
         <div type="date" class="col mb-1 text-center text-muted">
-            {{object.date}}
+            опубліковано {{object.date}}
         </div>
     </div>
     <hr class="new5 mb-5">
@@ -113,6 +113,11 @@
 
                         {{ object.text | safe }}
 
+                        
+                        <div type="date" class="mt-2 text-muted">
+                            остання редакція {{object.edit_date}}
+                        </div>
+                        
                     </div>
 
                     <aside class="col-md-3 blog-sidebar">

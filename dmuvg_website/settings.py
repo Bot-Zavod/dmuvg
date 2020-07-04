@@ -26,8 +26,18 @@ SECRET_KEY = "m@$v%t-!5_uxz#n7h0%eryq9yj#l=i-k8p3uf+fv&&^lf*fnb4"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "*"]
 
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
+# SECURE_SSL_REDIRECT = True
+
+# SECURE_BROWSER_XSS_FILTER = True
+# SECURE_CONTENT_TYPE_NOSNIFF = True
+# SECURE_HSTS_SECONDS = 3600
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# SECURE_HSTS_PRELOAD = True
+# X_FRAME_OPTIONS = 'DENY'
 
 # Application definition
 
@@ -130,7 +140,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
 # Summernote configuration
-SUMMERNOTE_THEME = 'bs3'
+SUMMERNOTE_THEME = 'bs4'
 SUMMERNOTE_CONFIG = {
     # Using SummernoteWidget - iframe mode, default
     'iframe': True,
@@ -155,17 +165,19 @@ SUMMERNOTE_CONFIG = {
         # https://summernote.org/deep-dive/#custom-toolbar-popover
         'toolbar': [
             ['style', ['style']],
-            ['font', ['bold', 'underline', 'clear']],
-            ['fontname', ['fontname']],
+            ['fontname', ['fontname', 'fontsize', 'height']],
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['font', ['strikethrough', 'superscript', 'subscript']],
             ['color', ['color']],
             ['para', ['ul', 'ol', 'paragraph']],
             ['table', ['table']],
-            ['insert', ['link', 'picture', 'video']],
-            ['view', ['help']],
+            ['insert', ['link', 'hr', 'picture']],
+            ['view', ['undo', 'redo']],
+            ['help', ['help']]
         ],
 
         # Or, explicitly set language/locale for editor
-        'lang': 'uk',
+        'lang': 'uk-UA',
     },
 
     # Require users to be authenticated for uploading attachments.
@@ -225,3 +237,14 @@ SUMMERNOTE_CONFIG = {
     #     '//somewhere_in_internet/summernote-plugin-name.js',
     # },
 }
+
+
+CORS_REPLACE_HTTPS_REFERER      = False
+HOST_SCHEME                     = "http://"
+SECURE_PROXY_SSL_HEADER         = None
+SECURE_SSL_REDIRECT             = False
+SESSION_COOKIE_SECURE           = False
+CSRF_COOKIE_SECURE              = False
+SECURE_HSTS_SECONDS             = None
+SECURE_HSTS_INCLUDE_SUBDOMAINS  = False
+SECURE_FRAME_DENY               = False

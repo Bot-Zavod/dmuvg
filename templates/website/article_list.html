@@ -8,16 +8,23 @@
             {% if title %}
                 <h2>{{title}}</h2>
             {% else %}
-                <h2>Новости</h2>
+                <h2>Новини</h2>
             {% endif %}
         </div>
 
-        <!-- CONTENT -->
         {% if  request.user.is_authenticated == True %}
             <!--Add a post button for the admin-->
             <div class="col mt-4">
                 <div class="content">
-                    <a type="button" class="btn btn-secondary btn-lg btn-block" href="{% url 'new_page' %}">
+                    <a type="button" 
+                        class="btn btn-secondary btn-lg btn-block"
+                        {% if title %}
+                            href="{% url 'new_page' slug_id %}"
+                        {% else %}
+                            href="{% url 'new_page' None %}"
+                        {% endif %}
+                        >
+
                         <i class="fas fa-plus"></i>
                         Новый пост
                     </a>

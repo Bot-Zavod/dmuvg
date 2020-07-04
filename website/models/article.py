@@ -11,6 +11,7 @@ class Article(models.Model):
     header = models.CharField(max_length=100)
     text = models.TextField(max_length=100000)
     date = models.DateTimeField(auto_now=False, auto_now_add=True)
+    edit_date = models.DateTimeField(auto_now=True, auto_now_add=False)
     fixed_to_top = models.BooleanField(default=False)
 
     FEED_SECTIONS = [
