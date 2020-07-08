@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, render_to_response
+from django.shortcuts import render, redirect
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.shortcuts import get_object_or_404
@@ -79,7 +79,6 @@ class Article_Main_List_View(ListView):
 
 
 def create_article_view(request, slug="WS"):
-
     if request.method == 'POST':
         form = ArticleForm(request.POST, initial={'category': slug})
         if form.is_valid():
@@ -113,7 +112,7 @@ def edit_article_view(request, slug):
     return render(request, 'article_edit.html', context=context)
 
 
-def handler404(request, exception, template_name="404.html"):
-    response = render_to_response(template_name)
+def handler404(request, exception):
+    response = render(request, "404.html")
     response.status_code = 404
     return response

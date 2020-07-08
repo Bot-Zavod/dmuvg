@@ -45,7 +45,7 @@ class Article(models.Model):
 
     def save(self, *args, **kwargs):
         value = self.header
-        origin_slug = unique_slug = slugify(value)
+        origin_slug = unique_slug = slugify(value.encode('utf-8'))
         # generetes unique slug in case that's not a fixed article
         if not self.fixed_to_top:
             numb = 0
